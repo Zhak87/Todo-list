@@ -1,0 +1,59 @@
+<div class="task-manager-container">
+    <h2>{{ 'TASK_MANAGER' | translate }}</h2>
+
+    <div class="language-switcher">
+        <button mat-button (click)="switchLanguage('en')">English</button>
+        <button mat-button (click)="switchLanguage('ru')">Русский</button>
+        <button mat-button (click)="switchLanguage('kk')">Қазақша</button>
+    </div>
+
+    <div class="task-form">
+        <h3>{{ 'CREATE_TASK' | translate }}</h3>
+        <form (ngSubmit)="createTask()">
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'TASK' | translate }}</mat-label>
+                <input matInput [(ngModel)]="newTaskText" name="newTaskText" required />
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">{{ 'ADD_TASK' | translate }}</button>
+        </form>
+    </div>
+
+    <div class="task-list">
+        <h3>{{ 'TASK_LIST' | translate }}</h3>
+        <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+            <ng-container matColumnDef="task">
+                <th mat-header-cell *matHeaderCellDef> {{ 'TASK' | translate }} </th>
+                <td mat-cell *matCellDef="let task">{{ task.text }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS' | translate }}</th>
+                <td mat-cell *matCellDef="let task">
+                    <button mat-icon-button color="primary" (click)="editTask(task)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <div class="task-form" *ngIf="currentTask">
+        <h3>{{ 'EDIT_TASK' | translate }}</h3>
+        <form (ngSubmit)="updateTask()">
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'TASK' | translate }}</mat-label>
+                <input matInput [(ngModel)]="currentTask.text" name="editTaskText" required />
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">{{ 'UPDATE_TASK' | translate }}</button>
+            <button mat-raised-button color="warn" (click)="cancelEdit()">{{ 'CANCEL' | translate }}</button>
+        </form>
+    </div>
+
+    <p>Duman Zhakenov</p>
+</div>

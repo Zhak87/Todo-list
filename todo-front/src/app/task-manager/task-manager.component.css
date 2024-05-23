@@ -1,0 +1,83 @@
+.task-manager-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.language-switcher {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.language-switcher button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.flag-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.task-form, .task-list {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.task-list {
+  width: 100%;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+td:last-child {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  margin-left: 5px;
+}
+
+@media (max-width: 600px) {
+  .task-form, .task-list {
+    padding: 10px;
+  }
+
+  th, td {
+    padding: 5px;
+  }
+
+  td:last-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
